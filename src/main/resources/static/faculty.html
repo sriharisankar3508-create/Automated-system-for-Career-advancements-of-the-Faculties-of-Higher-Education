@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty Dashboard</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background: #f0f2f5; }
+    .navbar {
+      background: #0f3460;
+      padding: 15px 30px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar h2 { font-size: 18px; }
+    .logout-btn {
+      background: #e94560;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .container { padding: 30px; }
+    .welcome {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    .welcome h3 { color: #0f3460; font-size: 20px; }
+    .welcome p { color: #888; margin-top: 5px; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    .card h4 { color: #333; font-size: 14px; }
+    .card .count {
+      font-size: 32px;
+      font-weight: bold;
+      color: #0f3460;
+      margin: 8px 0;
+    }
+    .section {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    .section h3 {
+      color: #0f3460;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #f0f2f5;
+    }
+    .form-group { margin-bottom: 15px; }
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      color: #333;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 10px 15px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+    }
+    .submit-btn {
+      background: #0f3460;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .submit-btn:hover { background: #e94560; }
+    table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+    th {
+      background: #0f3460;
+      color: white;
+      padding: 12px;
+      text-align: left;
+      font-size: 13px;
+    }
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #f0f2f5;
+      font-size: 13px;
+      color: #555;
+    }
+    tr:hover { background: #f8f9fa; }
+    .badge {
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: bold;
+    }
+    .badge.green { background: #d4edda; color: #155724; }
+    .badge.blue { background: #cce5ff; color: #004085; }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <h2>Faculty Career System</h2>
+    <div>
+      <span style="margin-right:15px;">Dr. Faculty</span>
+      <button class="logout-btn" onclick="window.location.href='index.html'">Logout</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="welcome">
+      <h3>Welcome, Dr. Faculty!</h3>
+      <p>Manage your career advancement records here.</p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h4>Publications</h4>
+        <div class="count">5</div>
+      </div>
+      <div class="card">
+        <h4>Awards</h4>
+        <div class="count">3</div>
+      </div>
+      <div class="card">
+        <h4>Promotion Status</h4>
+        <div class="count" style="font-size:18px;color:green;">Eligible</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Add New Publication</h3>
+      <div class="form-group">
+        <label>Paper Title</label>
+        <input type="text" id="paperTitle" placeholder="Enter paper title">
+      </div>
+      <div class="form-group">
+        <label>Journal Name</label>
+        <input type="text" id="journalName" placeholder="Enter journal name">
+      </div>
+      <div class="form-group">
+        <label>Year</label>
+        <input type="text" id="pubYear" placeholder="2024">
+      </div>
+      <div class="form-group">
+        <label>Type</label>
+        <select id="pubType">
+          <option>Journal Paper</option>
+          <option>Conference Paper</option>
+          <option>Book Chapter</option>
+        </select>
+      </div>
+      <button class="submit-btn" onclick="addPublication()">Add Publication</button>
+    </div>
+
+    <div class="section">
+      <h3>My Publications</h3>
+      <table>
+        <tr>
+          <th>Title</th>
+          <th>Journal</th>
+          <th>Year</th>
+          <th>Type</th>
+        </tr>
+        <tr>
+          <td>Deep Learning in Education</td>
+          <td>IEEE Transactions</td>
+          <td>2023</td>
+          <td><span class="badge green">Journal</span></td>
+        </tr>
+        <tr>
+          <td>AI Based Attendance System</td>
+          <td>Springer</td>
+          <td>2024</td>
+          <td><span class="badge blue">Conference</span></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    function addPublication() {
+      const title = document.getElementById('paperTitle').value;
+      const journal = document.getElementById('journalName').value;
+      const year = document.getElementById('pubYear').value;
+      if (!title || !journal || !year) {
+        alert('Please fill all fields!');
+        return;
+      }
+      alert('Publication added successfully!');
+    }
+  </script>
+
+</body>
+</html>
