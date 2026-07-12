@@ -31,9 +31,8 @@ promotions, and professional development activities.
 | Technology | Purpose |
 |---|---|
 | HTML | Page Structure |
-| CSS | Styling & Design |
 | JavaScript | Interactivity |
-| Firebase | Database |
+|MySQL| Database |
 | GitHub Pages | Free Hosting |
 
 ---
